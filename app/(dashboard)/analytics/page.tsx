@@ -2,7 +2,7 @@
 
 import React from "react";
 import TopBar from "@/components/layout/top-bar";
-import { TrendingUp, DollarSign, Package, Clock } from "lucide-react";
+import { TrendingUp, IndianRupee, Package, Clock } from "lucide-react";
 
 const monthlyData = [
   { month: "Jan", spend: 85 },
@@ -22,11 +22,11 @@ const monthlyData = [
 const maxSpend = Math.max(...monthlyData.map((d) => d.spend));
 
 const topManufacturers = [
-  { name: "Apex Textiles International", spend: "$342,000", pct: 28 },
-  { name: "Precision Metals Co", spend: "$285,000", pct: 24 },
-  { name: "Nexus Electronics Corp", spend: "$198,000", pct: 16 },
-  { name: "Zenith Polymers Ltd", spend: "$156,000", pct: 13 },
-  { name: "Others", spend: "$219,000", pct: 19 },
+  { name: "Apex Textiles International", spend: "₹342,000", pct: 28 },
+  { name: "Precision Metals Co", spend: "₹285,000", pct: 24 },
+  { name: "Nexus Electronics Corp", spend: "₹198,000", pct: 16 },
+  { name: "Zenith Polymers Ltd", spend: "₹156,000", pct: 13 },
+  { name: "Others", spend: "₹219,000", pct: 19 },
 ];
 
 export default function AnalyticsPage() {
@@ -36,8 +36,8 @@ export default function AnalyticsPage() {
 
       <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { label: "Total Spend (YTD)", value: "$1.2M", icon: DollarSign, bg: "bg-emerald-50", color: "text-emerald-600", trend: "+18%" },
-          { label: "Avg. Order Value", value: "$17,400", icon: TrendingUp, bg: "bg-primary/10", color: "text-primary", trend: "+5%" },
+          { label: "Total Spend (YTD)", value: "₹1.2M", icon: IndianRupee, bg: "bg-emerald-50", color: "text-emerald-600", trend: "+18%" },
+          { label: "Avg. Order Value", value: "₹17,400", icon: TrendingUp, bg: "bg-primary/10", color: "text-primary", trend: "+5%" },
           { label: "Total Orders", value: "68", icon: Package, bg: "bg-blue-50", color: "text-blue-600", trend: "+12%" },
           { label: "Avg. Lead Time", value: "18 days", icon: Clock, bg: "bg-amber-50", color: "text-amber-600", trend: "-3 days" },
         ].map((s) => {
@@ -61,7 +61,7 @@ export default function AnalyticsPage() {
         {/* Spend Chart */}
         <div className="lg:col-span-2 rounded-2xl bg-white p-6 shadow-[0_4px_20px_0_rgba(0,0,0,0.03)]">
           <h3 className="text-lg font-bold text-slate-800">Monthly Spend</h3>
-          <p className="text-sm text-slate-500">Manufacturing spend breakdown by month (in $K)</p>
+          <p className="text-sm text-slate-500">Manufacturing spend breakdown by month (in ₹K)</p>
           <div className="mt-6 flex items-end gap-2 h-48">
             {monthlyData.map((d) => (
               <div key={d.month} className="flex-1 flex flex-col items-center gap-2">

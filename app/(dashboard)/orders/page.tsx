@@ -8,14 +8,14 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const dummyOrders = [
-  { id: "MF-8892", manufacturer: "Apex Textiles International", product: "Custom Aluminum Extrusions (Batch B)", status: "In Transit", statusColor: "bg-blue-50 text-blue-600", value: "$24,500", date: "2026-04-15" },
-  { id: "MF-8895", manufacturer: "Nexus Electronics Corp", product: "Titanium Fasteners Assembly", status: "Processing", statusColor: "bg-amber-50 text-amber-600", value: "$18,200", date: "2026-04-12" },
-  { id: "MF-8901", manufacturer: "Precision Metals Co", product: "Circuit Board Housings", status: "Queued", statusColor: "bg-slate-100 text-slate-500", value: "$31,750", date: "2026-04-10" },
-  { id: "MF-8876", manufacturer: "Zenith Polymers Ltd", product: "Injection Molded Casings (Rev C)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "$12,800", date: "2026-04-05" },
-  { id: "MF-8864", manufacturer: "Stellar Fabrics Group", product: "Cotton Blend Fabric Rolls", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "$9,400", date: "2026-03-28" },
-  { id: "MF-8852", manufacturer: "Lumina Home Goods", product: "Ceramic Mug Set (500 pcs)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "$6,250", date: "2026-03-20" },
-  { id: "MF-8840", manufacturer: "Apex Textiles International", product: "Seamless Activewear Batch", status: "Cancelled", statusColor: "bg-red-50 text-red-500", value: "$15,300", date: "2026-03-15" },
-  { id: "MF-8831", manufacturer: "Precision Metals Co", product: "Aluminum Heat Sinks (1000 pcs)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "$22,100", date: "2026-03-10" },
+  { id: "MF-8892", manufacturer: "Apex Textiles International", product: "Custom Aluminum Extrusions (Batch B)", status: "In Transit", statusColor: "bg-blue-50 text-blue-600", value: "₹24,500", date: "2026-04-15" },
+  { id: "MF-8895", manufacturer: "Nexus Electronics Corp", product: "Titanium Fasteners Assembly", status: "Processing", statusColor: "bg-amber-50 text-amber-600", value: "₹18,200", date: "2026-04-12" },
+  { id: "MF-8901", manufacturer: "Precision Metals Co", product: "Circuit Board Housings", status: "Queued", statusColor: "bg-slate-100 text-slate-500", value: "₹31,750", date: "2026-04-10" },
+  { id: "MF-8876", manufacturer: "Zenith Polymers Ltd", product: "Injection Molded Casings (Rev C)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "₹12,800", date: "2026-04-05" },
+  { id: "MF-8864", manufacturer: "Stellar Fabrics Group", product: "Cotton Blend Fabric Rolls", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "₹9,400", date: "2026-03-28" },
+  { id: "MF-8852", manufacturer: "Lumina Home Goods", product: "Ceramic Mug Set (500 pcs)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "₹6,250", date: "2026-03-20" },
+  { id: "MF-8840", manufacturer: "Apex Textiles International", product: "Seamless Activewear Batch", status: "Cancelled", statusColor: "bg-red-50 text-red-500", value: "₹15,300", date: "2026-03-15" },
+  { id: "MF-8831", manufacturer: "Precision Metals Co", product: "Aluminum Heat Sinks (1000 pcs)", status: "Delivered", statusColor: "bg-emerald-50 text-emerald-600", value: "₹22,100", date: "2026-03-10" },
 ];
 
 export default function OrdersPage() {
@@ -39,7 +39,7 @@ export default function OrdersPage() {
             product: data.productName || "Unnamed Product",
             status: data.status || "Queued",
             statusColor: "bg-slate-100 text-slate-500", // Default style for new
-            value: `$${(Number(data.volume) * Number(data.pricePerUnit)).toLocaleString()}`,
+            value: `₹${(Number(data.volume) * Number(data.pricePerUnit)).toLocaleString()}`,
             date: dateStr
           };
         });

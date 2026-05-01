@@ -125,7 +125,7 @@ export default function NewRFQPage() {
                 <input type="number" value={formData.volume} onChange={(e) => setFormData({ ...formData, volume: e.target.value })} className={inputClass} />
               </div>
               <div>
-                <label className="text-sm font-semibold text-slate-700">Target Price per Unit ($)</label>
+                <label className="text-sm font-semibold text-slate-700">Target Price per Unit (₹)</label>
                 <input type="number" step="0.01" value={formData.pricePerUnit} onChange={(e) => setFormData({ ...formData, pricePerUnit: e.target.value })} className={inputClass} />
               </div>
             </div>
