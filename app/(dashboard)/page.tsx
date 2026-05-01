@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import TopBar from "@/components/layout/top-bar";
 import FilterPanel from "@/components/manufacturers/filter-panel";
 import ManufacturerCard from "@/components/manufacturers/manufacturer-card";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Check } from "lucide-react";
 
 const manufacturers = [
   {
@@ -100,7 +100,37 @@ export default function ManufacturersPage() {
         subtitle="Browse and connect with verified manufacturing partners worldwide."
       />
 
-      <div className="mt-2 grid grid-cols-1 gap-6 lg:grid-cols-4">
+      {/* Hero Section */}
+      <div className="mt-4 mb-2 rounded-2xl bg-gradient-to-br from-primary to-violet-600 p-8 text-white shadow-lg relative overflow-hidden">
+        {/* Abstract Background Decoration */}
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute -bottom-32 right-20 h-64 w-64 rounded-full bg-white/10 blur-3xl"></div>
+
+        <div className="relative z-10 max-w-3xl">
+          <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            From Concept to Reality.
+          </h2>
+          <p className="mt-4 text-lg font-medium text-white/90 leading-relaxed">
+            Microforge connects product designers with manufacturers for fast prototyping and production.
+          </p>
+          <ul className="mt-8 flex flex-wrap gap-4">
+            {[
+              "Fast supplier discovery",
+              "Instant quote requests",
+              "Verified manufacturers",
+            ].map((bullet, idx) => (
+              <li key={idx} className="flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold backdrop-blur-sm border border-white/10 shadow-sm">
+                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-400 text-emerald-900">
+                  <Check className="h-3 w-3" strokeWidth={3} />
+                </div>
+                {bullet}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-4">
         {/* Filter Panel */}
         <div className="lg:col-span-1">
           <FilterPanel />
