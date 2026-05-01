@@ -96,7 +96,7 @@ export default function ManufacturersPage() {
   return (
     <div className="animate-fade-in">
       <TopBar
-        title="Manufacturers"
+        title="MicroForge"
         subtitle="Browse and connect with verified manufacturing partners worldwide."
       />
 
