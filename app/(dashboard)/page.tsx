@@ -1,86 +1,158 @@
-import TopBar from "@/components/layout/top-bar";
-import KpiCard from "@/components/dashboard/kpi-card";
-import ProductionTracker from "@/components/dashboard/production-tracker";
-import QuickActions from "@/components/dashboard/quick-actions";
-import ActiveShipments from "@/components/dashboard/active-shipments";
-import {
-  ClipboardList,
-  ShieldCheck,
-  DollarSign,
-  Crown,
-} from "lucide-react";
+"use client";
 
-export default function DashboardPage() {
+import React, { useState } from "react";
+import TopBar from "@/components/layout/top-bar";
+import FilterPanel from "@/components/manufacturers/filter-panel";
+import ManufacturerCard from "@/components/manufacturers/manufacturer-card";
+import { ChevronDown } from "lucide-react";
+
+const manufacturers = [
+  {
+    id: "apex-textiles",
+    name: "Apex Textiles International",
+    location: "Ho Chi Minh City, VN",
+    rating: 4.9,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+    tags: ["Apparel Manufacturing", "Knitwear"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+  {
+    id: "nexus-electronics",
+    name: "Nexus Electronics Corp",
+    location: "Taipei, TW",
+    rating: 4.7,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?w=600&h=400&fit=crop",
+    tags: ["Electronics", "PCB Assembly"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+  {
+    id: "lumina-home",
+    name: "Lumina Home Goods",
+    location: "Porto, PT",
+    rating: 4.9,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&h=400&fit=crop",
+    tags: ["Packaging", "Ceramics"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+  {
+    id: "pure-cosmetics",
+    name: "Pure Beauty Labs",
+    location: "Seoul, KR",
+    rating: 4.8,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop",
+    tags: ["Cosmetics / Personal Care", "Skincare"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+  {
+    id: "zenith-polymers",
+    name: "Zenith Packaging Ltd",
+    location: "Shenzhen, CN",
+    rating: 4.6,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&h=400&fit=crop",
+    tags: ["Packaging", "Injection Molding"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+  {
+    id: "stellar-foods",
+    name: "Stellar Food & Bev",
+    location: "Chicago, US",
+    rating: 4.5,
+    verified: true,
+    image:
+      "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=600&h=400&fit=crop",
+    tags: ["Food & Beverage", "Bottling"],
+    minOrder: 500,
+    unit: "units",
+    featured: true,
+  },
+];
+
+const sortOptions = ["Match Score", "Rating", "MOQ: Low to High", "MOQ: High to Low"];
+
+export default function ManufacturersPage() {
+  const [sortBy, setSortBy] = useState("Match Score");
+  const [showSort, setShowSort] = useState(false);
+
   return (
     <div className="animate-fade-in">
       <TopBar
-        title="Overview"
-        subtitle="Welcome back. Here is the current status of your manufacturing operations."
-        rightContent={
-          <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-1.5 mr-3">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse-soft" />
-            <span className="text-xs font-semibold text-emerald-700">
-              System Status: Optimal
-            </span>
-          </div>
-        }
+        title="Manufacturers"
+        subtitle="Browse and connect with verified manufacturing partners worldwide."
       />
 
-      {/* KPI Cards */}
-      <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <KpiCard
-          icon={ClipboardList}
-          iconBg="bg-primary/10"
-          iconColor="text-primary"
-          label="Active Orders"
-          value="34"
-          trend={{ value: "12%", positive: true }}
-        />
-        <KpiCard
-          icon={ShieldCheck}
-          iconBg="bg-amber-50"
-          iconColor="text-amber-600"
-          label="Pending Approvals"
-          value="7"
-          badge="Action Req."
-          badgeColor="bg-red-50 text-red-500"
-        />
-        <KpiCard
-          icon={DollarSign}
-          iconBg="bg-emerald-50"
-          iconColor="text-emerald-600"
-          label="Total Spend (YTD)"
-          value="$1.2M"
-        />
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-white to-violet-50 p-5 shadow-[0_4px_20px_0_rgba(0,0,0,0.03)] ring-1 ring-primary/10">
-          <div className="flex items-start justify-between">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10">
-              <Crown className="h-5 w-5 text-primary" strokeWidth={1.8} />
+      <div className="mt-2 grid grid-cols-1 gap-6 lg:grid-cols-4">
+        {/* Filter Panel */}
+        <div className="lg:col-span-1">
+          <FilterPanel />
+        </div>
+
+        {/* Results */}
+        <div className="lg:col-span-3">
+          {/* Results Header */}
+          <div className="mb-5 flex items-center justify-between">
+            <p className="text-sm text-slate-500">
+              Showing{" "}
+              <span className="font-bold text-slate-800">{manufacturers.length}</span> verified
+              manufacturers
+            </p>
+            <div className="relative">
+              <button
+                onClick={() => setShowSort(!showSort)}
+                className="flex items-center gap-2 text-sm text-slate-500 transition-smooth hover:text-slate-700"
+              >
+                Sort by:{" "}
+                <span className="font-semibold text-slate-800">{sortBy}</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {showSort && (
+                <div className="absolute right-0 top-full z-20 mt-2 w-48 overflow-hidden rounded-xl border border-slate-100 bg-white py-1 shadow-lg">
+                  {sortOptions.map((opt) => (
+                    <button
+                      key={opt}
+                      onClick={() => {
+                        setSortBy(opt);
+                        setShowSort(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left text-sm transition-smooth hover:bg-slate-50 ${
+                        opt === sortBy
+                          ? "font-semibold text-primary"
+                          : "text-slate-600"
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-            <span className="rounded-lg bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-              Auto-renews Oct
-            </span>
           </div>
-          <p className="mt-4 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-            Subscription Tier
-          </p>
-          <p className="mt-1 text-2xl font-bold text-slate-800">
-            Enterprise Plus
-          </p>
-        </div>
-      </div>
 
-      {/* Main Content Grid */}
-      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Production Tracker (2/3 width) */}
-        <div className="lg:col-span-2">
-          <ProductionTracker />
-        </div>
-
-        {/* Side Panel (1/3 width) */}
-        <div className="space-y-6">
-          <QuickActions />
-          <ActiveShipments />
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {manufacturers.map((mfg) => (
+              <ManufacturerCard key={mfg.id} {...mfg} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

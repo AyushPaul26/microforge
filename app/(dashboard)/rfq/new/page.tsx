@@ -14,12 +14,13 @@ const steps = [
 
 const categories = [
   "Select a category",
+  "Apparel Manufacturing",
+  "Cosmetics / Personal Care",
+  "Food & Beverage",
+  "Packaging",
+  "Electronics",
   "CNC Machining",
   "Injection Molding",
-  "Sheet Metal",
-  "3D Printing",
-  "Textile Manufacturing",
-  "PCB Assembly",
 ];
 
 export default function NewRFQPage() {
@@ -53,7 +54,7 @@ export default function NewRFQPage() {
           ...formData,
           status: "Queued",
           createdAt: serverTimestamp(),
-          manufacturer: "Pending Assignment",
+          manufacturer: "Matching Manufacturer",
         });
         router.push("/orders");
       } catch (error) {
@@ -76,7 +77,7 @@ export default function NewRFQPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Build New RFQ</h1>
+          <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Post Requirement</h1>
           <p className="mt-1 text-sm text-slate-500">Define requirements to source manufacturing partners.</p>
         </div>
         <div className="flex items-center gap-0">
@@ -101,7 +102,7 @@ export default function NewRFQPage() {
             <h2 className="text-lg font-bold text-slate-800">Product Information</h2>
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-slate-700">Product Name</label>
+                <label className="text-sm font-semibold text-slate-700">Product Type / Name</label>
                 <input type="text" placeholder="e.g. CNC Milled Aluminum Enclosure" value={formData.productName} onChange={(e) => setFormData({ ...formData, productName: e.target.value })} className={inputClass} />
               </div>
               <div>
@@ -120,7 +121,7 @@ export default function NewRFQPage() {
             </div>
             <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label className="text-sm font-semibold text-slate-700">Target Volume (Units)</label>
+                <label className="text-sm font-semibold text-slate-700">Quantity</label>
                 <input type="number" value={formData.volume} onChange={(e) => setFormData({ ...formData, volume: e.target.value })} className={inputClass} />
               </div>
               <div>

@@ -96,7 +96,16 @@ export default function OrdersPage() {
             {filtered.map((order, idx) => (
               <tr key={order.id} className={`border-b border-slate-50 transition-smooth hover:bg-slate-50/50 ${idx % 2 === 0 ? "" : ""}`}>
                 <td className="px-6 py-4 text-sm font-bold text-primary">{order.id}</td>
-                <td className="px-6 py-4 text-sm font-medium text-slate-700">{order.manufacturer}</td>
+                <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                  {order.manufacturer === "Pending Assignment" || order.manufacturer === "Matching Manufacturer" || order.manufacturer === "Pending" ? (
+                    <div>
+                      <div className="text-sm font-semibold text-amber-600">Matching Manufacturer</div>
+                      <div className="text-[11px] text-slate-400 mt-0.5">We are finding suitable suppliers</div>
+                    </div>
+                  ) : (
+                    order.manufacturer
+                  )}
+                </td>
                 <td className="px-6 py-4 text-sm text-slate-500 max-w-[200px] truncate">{order.product}</td>
                 <td className="px-6 py-4">
                   <span className={`inline-block rounded-lg px-2.5 py-1 text-[11px] font-semibold ${order.statusColor}`}>{order.status}</span>

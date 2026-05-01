@@ -15,8 +15,7 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", href: "/", icon: LayoutDashboard },
-  { label: "Manufacturers", href: "/manufacturers", icon: Factory },
+  { label: "Manufacturers", href: "/", icon: Factory },
   { label: "Orders", href: "/orders", icon: ShoppingCart },
   { label: "Inventory", href: "/inventory", icon: Package },
   { label: "Analytics", href: "/analytics", icon: BarChart3 },
@@ -79,7 +78,7 @@ export default function Sidebar() {
           className="flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-smooth hover:bg-primary-hover hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
         >
           <Plus className="h-4 w-4" strokeWidth={2.5} />
-          New RFQ
+          Post Requirement
         </Link>
       </div>
 

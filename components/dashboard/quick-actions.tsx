@@ -9,8 +9,8 @@ const actions = [
     icon: FileText,
     iconBg: "bg-primary/10",
     iconColor: "text-primary",
-    title: "Draft New RFQ",
-    description: "Start a new quote request",
+    title: "Post Requirement",
+    description: "Start a new requirement",
     href: "/rfq/new",
   },
   {
